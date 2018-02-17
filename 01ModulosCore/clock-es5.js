@@ -9,7 +9,7 @@ var Clock = (function() {
     var self = this;
   
     setInterval(function() {
-      self.emit('tictac');
+      self.emit('tictac'); // this --> function (no Clock)
     }, 1000);
   }
   
