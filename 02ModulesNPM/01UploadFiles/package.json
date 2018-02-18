@@ -1,0 +1,22 @@
+{
+  "name": "uploader",
+  "version": "0.0.1",
+  "description": "Aplicación para subir archivos con Node.js al servidor",
+  "main": "uploader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node uploader.js",
+    "restart": "nodemon uploader.js"
+  },
+  "keywords": [
+    "upload",
+    "files",
+    "node.js"
+  ],
+  "author": "Joselyn Dos Ramos",
+  "license": "MIT",
+  "dependencies": {
+    "formidable": "^1.1.1",
+    "fs-extra": "^5.0.0"
+  }
+}
