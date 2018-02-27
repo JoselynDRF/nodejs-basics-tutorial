@@ -1,0 +1,20 @@
+{
+  "name": "visitor-counter",
+  "version": "0.0.1",
+  "description": "Contador de visitas con Express",
+  "main": "visitor-counter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "counter",
+    "express"
+  ],
+  "author": "Joselyn Dos Ramos",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.2"
+  }
+}

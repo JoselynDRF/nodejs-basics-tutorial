@@ -26,3 +26,5 @@ app
 app.listen(3000);
 
 console.log('Iniciando Express en el puerto 3000...');
+
+// http://localhost:3000/search?s=busqueda
