@@ -2,6 +2,7 @@
 
 var express = require('express'),
     favicon = require('serve-favicon'),
+    morgan = require('morgan'),
     jade = require('jade'),
     routes = require('./routes/index'),
     faviconURL = `${__dirname}/public/img/favicon.png`,
@@ -18,6 +19,7 @@ app
 
   // Executing middlewares
   .use(favicon(faviconURL))
+  .use(morgan('dev'))
   .use(publicDir)
   .use('/', routes) // Execute routing middleware
 
