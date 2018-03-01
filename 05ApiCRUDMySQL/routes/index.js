@@ -23,11 +23,15 @@ router
   .get('/', (req, res, next) => {
     req.getConnection((err, movies) => {
       movies.query('SELECT * FROM movie', (err, rows) => {
-        let locals = {
-          title: 'Lista de Películas',
-          data: rows
+        if(err) {
+          next(new Error('No hay registros de películas'));
+        } else {
+          let locals = {
+            title: 'Lista de Películas',
+            data: rows
+          }
+          res.render('index', locals);
         }
-        res.render('index', locals);
       })
     })
 
@@ -52,7 +56,7 @@ router
       console.log(movie);
 
       movies.query('INSERT INTO movie SET ?', movie, (err, rows) => {
-        return (err) ? res.redirect('/agregar') : res.redirect('/');
+        return (err) ? next(new Error('Error al insertar una película')) : res.redirect('/');
       })
     })
   })
@@ -66,7 +70,7 @@ router
         console.log(err, '---', rows);
 
         if(err) {
-          throw(err);
+          next(new Error('Registro no encontrado'))
         } else {
           let locals = {
             title: 'Editar Película',
@@ -92,7 +96,19 @@ router
       console.log(movie);
 
       movies.query('UPDATE movie SET ? WHERE movie_id = ?', [movie, movie.movie_id], (err, rows) => {
-        return (err) ? res.redirect('/editar/:movie_id') : res.redirect('/');
+        return (err) ? next(new Error('Error al editar la película')) : res.redirect('/');
+      })
+    })
+  })
+
+  .post('/eliminar/:movie_id', (req, res, next) => {
+    let movie_id = req.params.movie_id;
+    console.log(movie_id);
+
+    req.getConnection((err, movies) => {
+      movies.query('DELETE FROM movie WHERE movie_id = ?', movie_id, (err, rows) => {
+        console.log(err, '---', rows);
+        return (err) ? next(new Error('Registro No Encontrado')) : res.redirect('/');
       })
     })
   })
