@@ -9,8 +9,10 @@ router
   .get('/agregar', MovieController.addForm)
   .post('/', MovieController.insert)
   .get('/editar/:movie_id', MovieController.getOne)
-  .post('/actualizar/:movie_id', MovieController.update)
-  .post('/eliminar/:movie_id', MovieController.delete)
+  // .post('/actualizar/:movie_id', MovieController.update)
+  .put('/actualizar/:movie_id', MovieController.update)
+  // .post('/eliminar/:movie_id', MovieController.delete)
+  .delete('/eliminar/:movie_id', MovieController.delete)
   .use(MovieController.error404);
 
 module.exports = router;
