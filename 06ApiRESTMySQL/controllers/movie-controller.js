@@ -49,32 +49,59 @@ MovieController.getOne = (req, res, next) => {
   })
 }
 
-MovieController.insert = (req, res, next) => {
-  let movie = {
-    movie_id: req.body.movie_id,
-    title: req.body.title,
-    release_year: req.body.release_year,
-    rating: req.body.rating
-  }
+// MovieController.insert = (req, res, next) => {
+//   let movie = {
+//     movie_id: req.body.movie_id,
+//     title: req.body.title,
+//     release_year: req.body.release_year,
+//     rating: req.body.rating
+//   }
 
-  console.log(movie);
+//   console.log(movie);
 
-  MovieModel.insert(movie, (err) => {
-   if(err) {
-    let locals = {
-      title: `Error al agregar el registro con el id: ${movie.movie_id}`,
-      description: 'Error de sintaxis SQL',
-      error: err
-    }
+//   MovieModel.insert(movie, (err) => {
+//    if(err) {
+//     let locals = {
+//       title: `Error al agregar el registro con el id: ${movie.movie_id}`,
+//       description: 'Error de sintaxis SQL',
+//       error: err
+//     }
 
-    res.render('error', locals);
-    } else {
-      res.redirect('/')
-    }
-  })
-}
+//     res.render('error', locals);
+//     } else {
+//       res.redirect('/')
+//     }
+//   })
+// }
 
-MovieController.update = (req, res, next) => {
+// MovieController.update = (req, res, next) => {
+//   let movie = {
+//     movie_id: req.body.movie_id,
+//     title: req.body.title,
+//     release_year: req.body.release_year,
+//     rating: req.body.rating,
+//     image: ''
+//   }
+
+//   console.log(movie);
+
+//   MovieModel.update(movie, (err) => {
+//     if(err) {
+//      let locals = {
+//        title: `Error al editar el registro con el id: ${movie.movie_id}`,
+//        description: 'Error de sintaxis SQL',
+//        error: err
+//      }
+ 
+//      res.render('error', locals);
+//      } else {
+//        res.redirect('/')
+//      }
+//   })
+// }
+
+// Replace Insert and Update
+MovieController.save = (req, res, next) => {
   let movie = {
     movie_id: req.body.movie_id,
     title: req.body.title,
@@ -85,10 +112,10 @@ MovieController.update = (req, res, next) => {
 
   console.log(movie);
 
-  MovieModel.update(movie, (err) => {
+  MovieModel.save(movie, (err) => {
     if(err) {
      let locals = {
-       title: `Error al editar el registro con el id: ${movie.movie_id}`,
+       title: `Error al salvar el registro con el id: ${movie.movie_id}`,
        description: 'Error de sintaxis SQL',
        error: err
      }
