@@ -65,5 +65,13 @@ fieldset {
 }
 
 .add {
-  background: #0B0;
+  background-color: #0B0;
+}
+
+.edit {
+  background-color: #0871B2;
+}
+
+.delete {
+  background-color: #D23641;
 }
