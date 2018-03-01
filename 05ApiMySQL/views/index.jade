@@ -2,7 +2,28 @@ extends layout.jade
 
 block content
   section.container
-    div.item.logo
-      div.item
-        h1
-          a(href="/")= title
+    include header.jade
+    article.item
+      -if(data.length)
+        table.table
+          tr
+            th ID
+            th Título
+            th Año
+            th Puntuación
+            th Poster
+            th(colspan="2")
+              form(method="get" action="/agregar")
+                input.button.add(type="submit", value="Agregar")
+          -each movie in data
+            tr
+              td #{movie.movie_id}
+              td #{movie.title}
+              td #{movie.release_year}
+              td #{movie.rating}
+              td
+                img.poster(src="./img/node-logo.png", alt="#{movie.title}")
+              td editar
+              td eliminar
+      -else
+        p.error No existen peliculas en la Base de Datos

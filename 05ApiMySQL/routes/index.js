@@ -19,19 +19,43 @@ function error404(req, res, next) {
 
 router.use(movies);
 
-router.get('/', (req, res, next) => {
-  req.getConnection((err, movies) => {
-    movies.query('SELECT * FROM movie', (err, rows) => {
-      let locals = {
-        title: 'Lista de Peliculas',
-        data: rows
-      }
-      res.render('index', locals);
+router
+  .get('/', (req, res, next) => {
+    req.getConnection((err, movies) => {
+      movies.query('SELECT * FROM movie', (err, rows) => {
+        let locals = {
+          title: 'Lista de Películas',
+          data: rows
+        }
+        res.render('index', locals);
+      })
     })
+
+    //next();
   })
 
-  //next();
-});
+  .get('/agregar', (req, res, next) => {
+    res.render('add-movie', {
+      title: 'Agregar Película'
+    })
+  })
+  
+  .post('/', (req, res, next) => {
+    req.getConnection((err, movies) => {
+      let movie = {
+        movie_id: req.body.movie_id,
+        title: req.body.title,
+        release_year: req.body.release_year,
+        rating: req.body.rating
+      }
+
+      console.log(movie);
+
+      movies.query('INSERT INTO movie SET ?', movie, (err, rows) => {
+        return (err) ? res.redirect('/agregar') : res.redirect('/');
+      })
+    })
+  })
 
 router.use(error404);
 
