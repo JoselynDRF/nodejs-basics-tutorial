@@ -44,19 +44,7 @@ MovieController.delete = (req, res, next) => {
   let movie_id = req.params.movie_id;
   console.log(movie_id);
 
-  MovieModel.delete(movie_id, (err) => {
-    if(err) {
-     let locals = {
-       title: `Error al eliminar el registro con el id: ${movie.movie_id}`,
-       description: 'Error de sintaxis SQL',
-       error: err
-     }
- 
-     res.render('error', locals);
-     } else {
-       res.redirect('/')
-     }
-  })
+  MovieModel.delete(movie_id, () => res.redirect('/'));
 }
 
 MovieController.addForm = (req, res, next) => res.render('add-movie', { title: 'Agregar Película' });

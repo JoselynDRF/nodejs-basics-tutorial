@@ -22,7 +22,10 @@ MovieModel.getOne = (id, callback) => {
 };
 
 MovieModel.delete = (id, callback) => {
-  
+  connection.remove({ movie_id: id }, err => {
+    if(err) throw err;
+    callback();
+  })
 };
 
 MovieModel.save = (data, callback) => {
