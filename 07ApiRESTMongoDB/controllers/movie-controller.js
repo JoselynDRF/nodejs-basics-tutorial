@@ -4,23 +4,12 @@ var MovieModel = require('../models/movie-model'),
     MovieController = () => {};
   
 MovieController.getAll = (req, res, next) => {
-  MovieModel.getAll((err, rows) => {
-    if(err) {
-      let locals = {
-        title: 'Error al consultar la base de datos',
-        description: 'Error de sintaxis SQL',
-        error: err
-      }
-
-    res.render('error', locals);
-
-    } else {
-      let locals = {
-        title: 'Lista de Películas',
-        data: rows
-      }
-      res.render('index', locals);
+  MovieModel.getAll(docs => {
+    let locals = {
+      title: 'Lista de Películas',
+      data: docs
     }
+    res.render('index', locals);
   })
 }
 
@@ -28,24 +17,13 @@ MovieController.getOne = (req, res, next) => {
   let movie_id = req.params.movie_id;
   console.log(movie_id);
 
-  MovieModel.getOne(movie_id, (err, rows) => {
-    console.log(err, '---', rows);
-
-    if(err) {
-      let locals = {
-        title: `Error al obtener el registro con el id: ${movie_id}`,
-        description: 'Error de sintaxis SQL',
-        error: err
-      }
-      res.render('error', locals);
-    } else {
-      let locals = {
-        title: 'Editar Película',
-        data: rows
-      }
-
-      res.render('edit-movie', locals);
+  MovieModel.getOne(movie_id, docs => {
+    let locals = {
+      title: 'Editar Película',
+      data: docs
     }
+
+    res.render('edit-movie', locals);
   })
 }
 
@@ -59,20 +37,7 @@ MovieController.save = (req, res, next) => {
   }
 
   console.log(movie);
-
-  MovieModel.save(movie, (err) => {
-    if(err) {
-     let locals = {
-       title: `Error al salvar el registro con el id: ${movie.movie_id}`,
-       description: 'Error de sintaxis SQL',
-       error: err
-     }
- 
-     res.render('error', locals);
-     } else {
-       res.redirect('/')
-     }
-  })
+  MovieModel.save(movie, () => res.redirect('/'));
 }
 
 MovieController.delete = (req, res, next) => {
