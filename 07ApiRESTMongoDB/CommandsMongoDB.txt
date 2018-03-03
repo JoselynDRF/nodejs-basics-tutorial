@@ -1,0 +1,14 @@
+mongod -> Ejecutar el servicio de mongo
+mongo -> Ejecutar el cliente de la Terminal de Comandos
+show dbs
+user namedb
+show collections
+db.collection
+db.collection.insert({"field": "value"})
+db.collection.save({"_id":ObjectID("id"), "field": "value"})
+db.collection.remove({"field": "value"})
+db.collection.find()
+db.collection.find().pretty()
+db.collection.find().explain()
+db.collection.findOne({"field": "value"})
+db.collection.count()
