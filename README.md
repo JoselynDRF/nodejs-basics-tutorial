@@ -1,4 +1,4 @@
-# Tutorial - NodeJS
+# NodeJS Tutorial
 Starting with Node.js and Express
 
 ### Topics
