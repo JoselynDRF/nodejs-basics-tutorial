@@ -10,13 +10,13 @@
   "author": "Joselyn Dos Ramos",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "express": "^4.16.2",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
     "express-myconnection": "^1.0.4",
     "jade": "^1.11.0",
-    "morgan": "^1.9.0",
-    "mysql": "^2.15.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.17.1",
     "responsimple": "^1.0.1",
-    "serve-favicon": "^2.4.5"
+    "serve-favicon": "^2.5.0"
   }
 }
